@@ -3,7 +3,6 @@ if (session_status() === PHP_SESSION_NONE) session_start();
 
 $isEdit = isset($categoria);
 $title = $isEdit ? "Editar Categoria" : "Adicionar Categoria";
-$actionUrl = $isEdit ? "/categorias/update" : "/categorias/store";
 ?>
 <!doctype html>
 <html lang="pt-BR">
@@ -20,14 +19,15 @@ $actionUrl = $isEdit ? "/categorias/update" : "/categorias/store";
             <h4 class="mb-0"><?= $title ?></h4>
         </div>
         <div class="card-body">
-            <form method="POST" action="<?= $actionUrl ?>">
+            <form method="POST" action="/categorias">
                 <?php if($isEdit): ?>
                     <input type="hidden" name="id" value="<?= $categoria['id'] ?>">
                 <?php endif; ?>
 
                 <div class="mb-3">
-                    <label class="form-label">Nome</label>
-                    <input type="text" name="nome" class="form-control" required value="<?= $isEdit ? $categoria['nome'] : '' ?>">
+                    <label class="form-label">Nome da Categoria</label>
+                    <input type="text" name="nome" class="form-control" required
+                           value="<?= $isEdit ? htmlspecialchars($categoria['nome']) : '' ?>">
                 </div>
 
                 <button type="submit" class="btn btn-success"><?= $isEdit ? "Atualizar" : "Cadastrar" ?></button>

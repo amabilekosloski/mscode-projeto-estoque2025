@@ -5,7 +5,7 @@ CREATE TABLE categoria (
 );
 
 -- Create produto table
-CREATE TABLE produto (
+CREATE TABLE produtos (
   id INT PRIMARY KEY AUTO_INCREMENT,
   nome VARCHAR(100) NOT NULL,
   descricao TEXT,
@@ -42,4 +42,10 @@ CREATE TABLE venda_item (
   preco_unitario DECIMAL(10, 2) NOT NULL,
   FOREIGN KEY (venda_id) REFERENCES venda(id),
   FOREIGN KEY (produto_id) REFERENCES produto(id)
+);
+
+CREATE TABLE logins (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  senha VARCHAR(255) NOT NULL
 );

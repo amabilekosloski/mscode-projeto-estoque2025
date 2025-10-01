@@ -6,7 +6,15 @@ abstract class AbstractController
 {
     public function render(string $viewName, array $data = []): void
     {
-        require_once($_SERVER['DOCUMENT_ROOT'] . '/' . '/view/' . $viewName);
+        extract($data);
+
+        $viewFile = __DIR__ . '/../../public/view/' . $viewName;
+
+        if (!file_exists($viewFile)) {
+            die("View {$viewName} não encontrada!");
+        }
+
+        require $viewFile;
     }
 
     public function redirect(string $route): never

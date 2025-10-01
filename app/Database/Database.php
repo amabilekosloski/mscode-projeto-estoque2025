@@ -15,7 +15,7 @@ readonly class Database
         string $username,
         string $password,
         ?int $port = null,
-    ) {
+    ) {                      
         try {
             $dsn = "mysql:host={$host};dbname={$database};charset=utf8";
             if ($port) {

@@ -16,3 +16,4 @@ foreach ($router['routes'] as $route => $controller) {
 
 $defaultController = new $router['default']();
 $defaultController->index($_REQUEST);
+exit;
